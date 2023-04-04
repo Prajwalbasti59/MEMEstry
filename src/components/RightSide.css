@@ -1,0 +1,40 @@
+.RightSide{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+.navIcons{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.navIcons:hover{
+    cursor: pointer;
+}
+
+.navIcons>img{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+.r-button{
+    height: 3rem;
+    width: 80%;
+    align-self: center;
+}
+
+.movie{
+    height: 8rem;
+    width :100%;
+    transition: transform 250ms;   
+}
+.movie:hover{
+    cursor: pointer;
+    color: var(--orange);
+    /* background: transparent; */
+    border: 2px solid var(--orange);
+    transform: translateY(-10px);
+  }
