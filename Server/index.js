@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 import AuthRoute from './Routes/AuthRoute'
 import UserRoute from './Routes/UserRoute'
+import PostRoute from './Routes/PostRoute'
 
 dotenv.config()
 
@@ -17,4 +18,5 @@ then(() => app.listen(process.env.PORT,() => console.log(`listening at ${process
 
 app.use('/auth',AuthRoute)
 app.use('/user',UserRoute)
+app.use('/post',PostRoute)
 
