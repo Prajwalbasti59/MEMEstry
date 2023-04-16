@@ -1,7 +1,16 @@
 import React from 'react'
 import action from '../img/giphy.gif'
+import { useEffect,useState } from "react";
 import './Auth.css'
+
 const Auth = () => {
+
+  const [isSignUp,setSignUp] = useState(false);
+  const [data,setdata] = useState({"firstname" :"", "lastname" :"","username" :"","password" :"","confirmpass" :""})
+  const [confirmpass,setconfirmpass] = useState(false)
+  const handleChange =(e) =>{
+   setdata({...data, [e.target.name] : e.target.value})
+  }
   return (
     <div className='Auth'>
           <div className='a-left'>
@@ -11,7 +20,67 @@ const Auth = () => {
           <h6>Explore the ideas throughout the world</h6> */}
            </div>
           </div>
-          <SignUp/>
+         
+    <div className="car">
+      <form className="infoForm authForm">
+      <img src="https://img.icons8.com/external-filled-outline-wichaiwi/128/000000/external-movie-soft-power-filled-outline-wichaiwi.png"/>
+        <h2>{isSignUp? "Sign up":"Log In"}</h2>
+
+        {isSignUp &&
+          <div>
+          <input
+            type="text"
+            placeholder="First Name"
+            className="infoInput"
+            name="firstname"
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
+            className="infoInput"
+            name="lastname"
+            onChange={handleChange}
+          />
+        </div>
+}
+        <div>
+          <input
+            type="text"
+            className="infoInput"
+            name="username"
+            placeholder="Usernames"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <input
+            type="password"
+            className="infoInput"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+          />
+          {isSignUp &&
+            <input
+            type="text"
+            className="infoInput"
+            name="confirmpass"
+            placeholder="Confirm Password"
+            onChange={handleChange}
+          />}
+        </div>
+        <span style={{display : confirmpass?"none":"block"}}>
+              Confirm passowrd is not matching !
+        </span>
+        <div>
+            <span style={{fontSize: '18px',cursor: "pointer"} }  onClick={()=> setSignUp((prev)=>!prev)}>{isSignUp? "Already have an account. Login!" : "Don't have an account? SignUp"}</span>
+        </div>
+        <button className="button infoButton" type="submit">{isSignUp? "Signup":"Login" }</button>
+      </form>
+    </div>
+
     </div>
   )
 }

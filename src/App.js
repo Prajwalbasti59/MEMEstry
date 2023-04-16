@@ -19,10 +19,10 @@ function App() {
     <div className="App">
        <div className="blur" style={{top: '-18%', right: '0'}}></div>
         <div className="blur" style={{top: '36%', left: '-8rem'}}></div>
-        <Home></Home>
-           {/* {showIntro && <Intro/>}
+        {/* <Home></Home>
+           {showIntro && <Intro/>}
            {showcomponenet  && <Home />  }       */}
-        {/* <Auth></Auth> */}
+        <Auth></Auth>
     </div>
   );
 }
