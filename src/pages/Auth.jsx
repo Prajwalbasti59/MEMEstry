@@ -1,6 +1,7 @@
 import React from 'react'
 import action from '../img/giphy.gif'
 import { useEffect,useState } from "react";
+import {useDispatch} from 'react-redux'
 import './Auth.css'
 
 const Auth = () => {
@@ -8,9 +9,31 @@ const Auth = () => {
   const [isSignUp,setSignUp] = useState(false);
   const [data,setdata] = useState({"firstname" :"", "lastname" :"","username" :"","password" :"","confirmpass" :""})
   const [confirmpass,setconfirmpass] = useState(false)
+  const dispatch = useDispatch()
   const handleChange =(e) =>{
    setdata({...data, [e.target.name] : e.target.value})
   }
+
+  const handleSubmit = (e) =>{
+
+    e.preventdefault();
+
+    if(isSignUp)
+    {
+      data.password === data.confirmpass?dispatch(SignUp(data)) : setconfirmpass(false)
+
+    }
+    else{
+      dispatch(LogIn(data))
+    }
+  }
+
+  const form_reset = () =>{
+    setconfirmpass(true)
+    setdata(
+    {"firstname" :"", "lastname" :"","username" :"","password" :"","confirmpass" :""})
+  }
+
   return (
     <div className='Auth'>
           <div className='a-left'>
@@ -34,6 +57,7 @@ const Auth = () => {
             className="infoInput"
             name="firstname"
             onChange={handleChange}
+            value={data.firstname}
           />
           <input
             type="text"
@@ -41,6 +65,7 @@ const Auth = () => {
             className="infoInput"
             name="lastname"
             onChange={handleChange}
+            value={data.lastname}
           />
         </div>
 }
@@ -51,6 +76,7 @@ const Auth = () => {
             name="username"
             placeholder="Usernames"
             onChange={handleChange}
+            value={data.username}
           />
         </div>
 
@@ -61,6 +87,7 @@ const Auth = () => {
             name="password"
             placeholder="Password"
             onChange={handleChange}
+            value={data.password}
           />
           {isSignUp &&
             <input
@@ -69,13 +96,14 @@ const Auth = () => {
             name="confirmpass"
             placeholder="Confirm Password"
             onChange={handleChange}
+            value={data.confirmpass}
           />}
         </div>
         <span style={{display : confirmpass?"none":"block"}}>
               Confirm passowrd is not matching !
         </span>
         <div>
-            <span style={{fontSize: '18px',cursor: "pointer"} }  onClick={()=> setSignUp((prev)=>!prev)}>{isSignUp? "Already have an account. Login!" : "Don't have an account? SignUp"}</span>
+            <span style={{fontSize: '18px',cursor: "pointer"} }  onClick={()=> (setSignUp((prev)=>!prev), form_reset())}>{isSignUp? "Already have an account. Login!" : "Don't have an account? SignUp"}</span>
         </div>
         <button className="button infoButton" type="submit">{isSignUp? "Signup":"Login" }</button>
       </form>
