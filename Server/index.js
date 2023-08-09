@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
+import cors from 'cors'
 import AuthRoute from './Routes/AuthRoute'
 import UserRoute from './Routes/UserRoute'
 import PostRoute from './Routes/PostRoute'
@@ -11,6 +12,7 @@ dotenv.config()
 const app = express();
 app.use(bodyParser.json({limit: '30mb',extended: true}));
 app.use(bodyParser.urlencoded({limit: '30mb',extended: true}));
+app.use(cors())
 mongoose.connect(
     process.env.Mongo_db,
     {useNewUrlParser :true, useUnifiedTopology: true}).
